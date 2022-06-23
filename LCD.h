@@ -3,7 +3,7 @@
  *
  * Created: 6/22/2022 11:01:10 AM
  *  Author: Ahmed Othman
- */ 
+ */
 
 
 #ifndef LCD_H_
@@ -24,7 +24,7 @@ From pin 4 to pin 7 to any PORT you specify in the following definition
 #define DataPortDir DDRD
 #define DataPort PORTD
 
-volatile int LCDMODE_Global; 
+volatile int LCDMODE_Global;
 void init_LCD();
 void set_LCD_BIT_MODE(int LCDMODE);
 void Command_LCD(unsigned char cmnd);
@@ -35,4 +35,6 @@ void Write_Num_LCD_Int (int num);
 void Clear_LCD();
 void jump_first_Line(int beginning);
 void jump_second_Line(int beginning);
+void scroll_display_left_right();
+
 #endif /* LCD_H_ */
