@@ -9,8 +9,8 @@
 📎 Attached as PNG in the files
 
 ```bash
-Schematic_Diagram_4_Bit_MODE
+Schematic_Diagram_4_Bit_MODE.png
 ```
 ```bash
-Schematic_Diagram_8_Bit_MODE
+Schematic_Diagram_8_Bit_MODE.png
 ```
