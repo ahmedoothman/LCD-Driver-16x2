@@ -4,7 +4,7 @@
  * Created: 6/22/2022 11:01:23 AM
  *  Author: Ahmed Othman
  */
-#define F_CPU 1000000UL
+#define F_CPU 16000000UL
 #include <avr/io.h>
 #include <avr/delay.h>
 #include <stdio.h>
@@ -83,7 +83,7 @@ void init_LCD(){
 
 void Write_Char_LCD( unsigned char data )
 {
-	_delay_ms(500);
+	_delay_ms(100);
 	if (LCDMODE_Global == 4)
 	{
 		DataPort = (DataPort & 0x0F) | (data & 0xF0); /* sending upper nibble */
@@ -146,17 +146,17 @@ void jump_first_Line(int beginning){
 	}
 
 }
-void scroll_display_left_right(int number_of_cells ){
+void scroll_display_left_right(int number_of_cells){
 	int x;
 	x=number_of_cells;
 	while(x>0){
-		_delay_ms(7000);
+		_delay_ms(Scroll_Speed_Delay);
 		Command_LCD(0x1C);
 		x--;
 	}
 	x=number_of_cells;
 	while(x>0){
-		_delay_ms(7000);
+		_delay_ms(Scroll_Speed_Delay);
 		Command_LCD(0x18);
 		x--;
 	}

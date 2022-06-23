@@ -18,6 +18,7 @@
 #define RS PORTC0
 #define EN PORTC1
 
+#define Scroll_Speed_Delay 800
 /*4-Bit Mode
 From pin 4 to pin 7 to any PORT you specify in the following definition
  8 Bit Mode
@@ -37,6 +38,6 @@ void Write_Num_LCD_Int (int num);
 void Clear_LCD();
 void jump_first_Line(int beginning);
 void jump_second_Line(int beginning);
-void scroll_display_left_right();
+void scroll_display_left_right(int number_of_cells);
 
 #endif /* LCD_H_ */
