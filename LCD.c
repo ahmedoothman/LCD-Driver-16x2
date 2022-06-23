@@ -65,7 +65,6 @@ void init_LCD(){
 			// set DataPort from pin 4 to pin 7 as output
 			DataPortDir |=0xF0;
 			_delay_ms(20);
-			Command_LCD(0x28);
 			Command_LCD(0x28);              /* 2 line, 5*7 matrix in 4-bit mode */
 			Command_LCD(0x0C);              /* Display on cursor off*/
 			Command_LCD(0x06);              /* Increment cursor (shift cursor to right)*/
@@ -73,11 +72,11 @@ void init_LCD(){
 		}else if(LCDMODE_Global ==8){
 			// set DataPort from pin 0 to pin 7 as output
 			DataPortDir |=0xFF;
-			Command_LCD(0x38);// 8-bit mode
-			Command_LCD(0x01);
-			Command_LCD(0x06);
-			Command_LCD(0x80);
-			Command_LCD(0x0C);
+			Command_LCD(0x38); /* 2 line, 5*7 matrix in 8-bit mode */
+			Command_LCD(0x01); /* Clear display screen*/
+			Command_LCD(0x06); /* Increment cursor (shift cursor to right)*/
+			Command_LCD(0x80);	/*force cursor to begining of 1st row*/
+			Command_LCD(0x0C); /* Display on cursor off*/
 
 		}else{
 			//There is no such a mode
@@ -155,13 +154,13 @@ void scroll_display_left_right(int number_of_cells ){
 	x=number_of_cells;
 	while(x>0){
 		_delay_ms(7000);
-		Command_LCD(0x1C);
+		Command_LCD(0x1C); //shift right
 		x--;
 	}
 	x=number_of_cells;
 	while(x>0){
 		_delay_ms(7000);
-		Command_LCD(0x18);
+		Command_LCD(0x18);//shift left
 		x--;
 	}
 }
