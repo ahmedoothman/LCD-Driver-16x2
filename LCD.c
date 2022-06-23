@@ -65,28 +65,25 @@ void init_LCD(){
 			// set DataPort from pin 4 to pin 7 as output
 			DataPortDir |=0xF0;
 			_delay_ms(20);
+			//Command_LCD(0x28);
 			Command_LCD(0x28);              /* 2 line, 5*7 matrix in 4-bit mode */
-			Command_LCD(0x0C);              /* Display on cursor off*/
-			Command_LCD(0x06);              /* Increment cursor (shift cursor to right)*/
-			Command_LCD(0x01);              /* Clear display screen*/				/* send for 4 bit initialization of LCD  */
 		}else if(LCDMODE_Global ==8){
 			// set DataPort from pin 0 to pin 7 as output
 			DataPortDir |=0xFF;
-			Command_LCD(0x38); /* 2 line, 5*7 matrix in 8-bit mode */
-			Command_LCD(0x01); /* Clear display screen*/
-			Command_LCD(0x06); /* Increment cursor (shift cursor to right)*/
-			Command_LCD(0x80);	/*force cursor to begining of 1st row*/
-			Command_LCD(0x0C); /* Display on cursor off*/
-
+			Command_LCD(0x38);  /* 2 line, 5*7 matrix in 8-bit mode */
 		}else{
 			//There is no such a mode
 		}
 
+			Command_LCD(0x0C);              /* Display on cursor off*/
+			Command_LCD(0x06);              /* Increment cursor (shift cursor to right)*/
+			Command_LCD(0x80);				//force cusror to beginning of 1st row
+			Command_LCD(0x01);              /* Clear display screen*/
 }
 
 void Write_Char_LCD( unsigned char data )
 {
-	_delay_ms(100);
+	_delay_ms(500);
 	if (LCDMODE_Global == 4)
 	{
 		DataPort = (DataPort & 0x0F) | (data & 0xF0); /* sending upper nibble */
@@ -154,13 +151,13 @@ void scroll_display_left_right(int number_of_cells ){
 	x=number_of_cells;
 	while(x>0){
 		_delay_ms(7000);
-		Command_LCD(0x1C); //shift right
+		Command_LCD(0x1C);
 		x--;
 	}
 	x=number_of_cells;
 	while(x>0){
 		_delay_ms(7000);
-		Command_LCD(0x18);//shift left
+		Command_LCD(0x18);
 		x--;
 	}
 }

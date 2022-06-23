@@ -20,6 +20,8 @@
 
 /*4-Bit Mode
 From pin 4 to pin 7 to any PORT you specify in the following definition
+ 8 Bit Mode
+ From pin 0 to pin 7 to any PORT you specify in the following definition
 */
 #define DataPortDir DDRD
 #define DataPort PORTD
