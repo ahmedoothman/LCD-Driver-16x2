@@ -5,21 +5,28 @@
  * Author : Ahmed Othman
  */
 
-#define F_CPU 16000000UL
+#include "LCD.h"
 #include <avr/io.h>
 #include <avr/delay.h>
 int main(void)
-{	int x =9;
+{	float x = 2;
     /* Replace with your application code */
-	set_LCD_BIT_MODE(8); //set mode to 8 bit
+	//_delay_ms(2000);
+	Set_LCD_BIT_MODE(8); //set mode to 8 bit
 	init_LCD();
-
-	Write_String_LCD("Hello World");
-	//Write_Num_LCD_Int(200);
-	jump_second_Line(1);
-	Write_String_LCD("Bye");
+	//init_LCD();
+	Show_Cursor();
+	Write_String_LCD("Count Secounds");
+	Set_Cursor_XY(2,0);
+	Write_String_LCD("Counts : ");
+	Set_Cursor_XY(2,7);
+	Write_Num_LCD_Int(2);
     while (1)
     {
-		scroll_display_left_right(5);
+	Set_Cursor_XY(2,7);
+	Write_Num_LCD_Int(x);
+	_delay_ms(1000);
+	x +=1;
+	Delete_At_XY(2,7,4);
     }
 }

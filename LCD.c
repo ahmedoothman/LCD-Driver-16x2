@@ -63,7 +63,7 @@ void Command_LCD(unsigned char cmnd){
 }
 
 void init_LCD(){
-	_delay_ms(50);
+	_delay_ms(100);
 	//set EN and RS as output
 	ControlPortDir |= (1<<EN_Dir) |(1<<RS_Dir);
 		if (LCDMODE_Global ==4)
@@ -89,10 +89,10 @@ void init_LCD(){
 			_delay_ms(10);
 			Command_LCD(0x01);              /* Clear display screen*/
 
-			if (LCDMODE_Global == 8)
-			{
-				re_try_init();
-			}
+		if (LCDMODE_Global == 8)
+		{
+			re_try_init();
+		}
 			//re_try_init();
 }
 
@@ -110,7 +110,7 @@ void re_try_init(){
 }
 void Write_Char_LCD( unsigned char data )
 {
-	_delay_us(10);
+	//_delay_us(10);
 	if (LCDMODE_Global == 4)
 	{
 		DataPort = (DataPort & 0x0F) | (data & 0xF0); /* sending upper nibble */
@@ -198,11 +198,37 @@ void Hide_Cursor(){
 
 
 void Set_Cursor_XY(int x,int y){
+	int pos;
+	int holder ;
+	switch (y){
+		case 10:
+		holder=0x0A;
+		break;
+		case 11:
+		holder=0x0B;
+		break;
+		case 12:
+		holder=0x0C;
+		break;
+		case 13:
+		holder=0x0D;
+		break;
+		case 14:
+		holder=0x0E;
+		break;
+		case 15:
+		holder=0x0F;
+		break;
+		default:
+		holder=y;
+	}
 	if(x == 1){
-		Command_LCD(0x80+y);
+		pos = 0x80+holder;
+		Command_LCD(pos);
 	}else if (x == 2)
 	{
-		Command_LCD(0xC0+y);
+		pos = 0xC0+holder;
+		Command_LCD(pos);
 	}
 }
 void Delete_At_XY(int x,int y, int length_of_word){
@@ -212,3 +238,4 @@ void Delete_At_XY(int x,int y, int length_of_word){
 		Write_String_LCD(" ");
 	}
 }
+	
