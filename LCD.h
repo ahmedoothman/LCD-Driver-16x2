@@ -8,7 +8,10 @@
 
 #ifndef LCD_H_
 #define LCD_H_
+
 #include "Header.h"
+
+#define F_CPU 16000000UL
 
 #define ControlPortDir DDRC
 #define RS_Dir DDC0
@@ -29,15 +32,18 @@ From pin 4 to pin 7 to any PORT you specify in the following definition
 
 volatile int LCDMODE_Global;
 void init_LCD();
-void set_LCD_BIT_MODE(int LCDMODE);
+void Set_LCD_BIT_MODE(int LCDMODE);
 void Command_LCD(unsigned char cmnd);
 void Write_Char_LCD(unsigned char data);
 void Write_String_LCD (char *str);
 void Write_Num_LCD_Float (float num);
 void Write_Num_LCD_Int (int num);
 void Clear_LCD();
-void jump_first_Line(int beginning);
-void jump_second_Line(int beginning);
-void scroll_display_left_right(int number_of_cells);
-
+void Jump_First_Line(int beginning);
+void Jump_Second_Line(int beginning);
+void Scroll_Display_Left_Right(int number_of_cells);
+void Show_Cursor();
+void Hide_Cursor();
+void Set_Cursor_XY(int x,int y);
+void Delete_At_XY(int x,int y, int length_of_word);
 #endif /* LCD_H_ */

@@ -11,7 +11,7 @@
 int main(void)
 {	int x =9;
     /* Replace with your application code */
-	set_LCD_BIT_MODE(8); //set mode to 4 bit
+	set_LCD_BIT_MODE(8); //set mode to 8 bit
 	init_LCD();
 
 	Write_String_LCD("Hello World");
