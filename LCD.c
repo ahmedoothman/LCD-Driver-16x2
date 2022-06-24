@@ -221,6 +221,7 @@ void Set_Cursor_XY(int x,int y){
 		break;
 		default:
 		holder=y;
+		
 	}
 	if(x == 1){
 		pos = 0x80+holder;
@@ -238,4 +239,3 @@ void Delete_At_XY(int x,int y, int length_of_word){
 		Write_String_LCD(" ");
 	}
 }
-	
