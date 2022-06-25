@@ -199,36 +199,12 @@ void Hide_Cursor(){
 
 void Set_Cursor_XY(int x,int y){
 	int pos;
-	int holder ;
-	switch (y){
-		case 10:
-		holder=0x0A;
-		break;
-		case 11:
-		holder=0x0B;
-		break;
-		case 12:
-		holder=0x0C;
-		break;
-		case 13:
-		holder=0x0D;
-		break;
-		case 14:
-		holder=0x0E;
-		break;
-		case 15:
-		holder=0x0F;
-		break;
-		default:
-		holder=y;
-		
-	}
 	if(x == 1){
-		pos = 0x80+holder;
+		pos = 0x80+y;
 		Command_LCD(pos);
 	}else if (x == 2)
 	{
-		pos = 0xC0+holder;
+		pos = 0xC0+y;
 		Command_LCD(pos);
 	}
 }
