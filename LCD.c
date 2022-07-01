@@ -80,32 +80,22 @@ void init_LCD(){
 		}else{
 			//There is no such a mode
 		}
-			_delay_ms(10);
 			Command_LCD(0x0C);              /* Display on cursor off*/
-			_delay_ms(10);
 			Command_LCD(0x06);              /* Increment cursor (shift cursor to right)*/
-			_delay_ms(10);
 			Command_LCD(0x80);				//force cusror to beginning of 1st row
-			_delay_ms(10);
 			Command_LCD(0x01);              /* Clear display screen*/
 
 		if (LCDMODE_Global == 8)
 		{
 			re_try_init();
 		}
-			//re_try_init();
 }
 
 void re_try_init(){
-		_delay_ms(20);
 		Command_LCD(0x38);  /* 2 line, 5*7 matrix in 8-bit mode */
-		_delay_ms(10);
 		Command_LCD(0x0C);              /* Display on cursor off*/
-		_delay_ms(10);
 		Command_LCD(0x06);              /* Increment cursor (shift cursor to right)*/
-		_delay_ms(10);
 		Command_LCD(0x80);				//force cusror to beginning of 1st row
-		_delay_ms(10);
 		Command_LCD(0x01);              /* Clear display screen*/
 }
 void Write_Char_LCD( unsigned char data )
@@ -199,6 +189,7 @@ void Hide_Cursor(){
 
 void Set_Cursor_XY(int x,int y){
 	int pos;
+
 	if(x == 1){
 		pos = 0x80+y;
 		Command_LCD(pos);
@@ -215,3 +206,4 @@ void Delete_At_XY(int x,int y, int length_of_word){
 		Write_String_LCD(" ");
 	}
 }
+	
